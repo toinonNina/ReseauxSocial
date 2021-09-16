@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const DB = require("../connection");
 
 const User = function(user) {
     this.id = user.id;
@@ -11,7 +11,21 @@ const User = function(user) {
     this.job = user.job;
     this.status = user.status;
     this.race = user.race;
-    // this.isAdmin = user.isAdmin;
-}
+
+};
+
+/**************************create***************************/
+
+User.create = (newUser, result) => {
+    DB.query("INSERT INTO users SET ? ", newUser, (err, res) => {
+        if (err) {
+            console.log("error:", err);
+            result(error, null);
+            return;
+        }
+        console.log("Utilisateur créé !");
+        res.status(200).json({ message: 'Utilisateur créer correctement' });
+    });
+};
 
 module.exports = User;
