@@ -30,7 +30,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Sanitize Middleware (Inyection Attacks)
+// Sanitize Middleware (Injection Attacks)
 app.use(sanitizeMiddleware());
 app.use(bodyParser.json());
 app.use(helmet());
