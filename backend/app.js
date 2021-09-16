@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const helmet = require("helmet");
 const sanitizeMiddleware = require("sanitize-middleware");
 
-// const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/user');
 // const postRoutes = require('./routes/post');
 // const commRoutes = require('./routes/comment');
 
@@ -34,8 +34,10 @@ app.use((req, res, next) => {
 app.use(sanitizeMiddleware());
 app.use(bodyParser.json());
 app.use(helmet());
-// app.use('/images', express.static(path.join(__dirname, 'images')));
-// app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/profilPic', express.static(path.join(__dirname, 'profilPic')));
+
+app.use('/api/auth', userRoutes);
 // app.use('/api/post', postRoutes);
 // app.use('/api/comm', commRoutes);
 

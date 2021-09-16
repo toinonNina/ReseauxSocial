@@ -3,7 +3,6 @@ const DB = require("../connection");
 const User = function(user) {
     this.id = user.id;
     this.mail = user.mail;
-    this.login = user.login;
     this.password = user.password;
     this.profilPicture = user.profilPicture;
     this.firstname = user.firstname;
@@ -15,15 +14,13 @@ const User = function(user) {
 
 /**************************create***************************/
 
-User.create = (newUser, result) => {
+User.create = (newUser) => {
     DB.query("INSERT INTO users SET ? ", newUser, (err, res) => {
         if (err) {
-            console.log("error:", err);
-            result(error, null);
+            console.log(err);
             return;
         }
         console.log("Utilisateur créé !");
-        res.status(200).json({ message: 'Utilisateur créer correctement' });
     });
 };
 
