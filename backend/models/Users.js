@@ -4,14 +4,13 @@ const User = function(user) {
     this.id = user.id;
     this.mail = user.mail;
     this.login = user.login;
-    this.pass = user.pass;
+    this.password = user.password;
     this.profilPicture = user.profilPicture;
     this.firstname = user.firstname;
     this.lastname = user.lastname;
     this.job = user.job;
     this.status = user.status;
     this.race = user.race;
-
 };
 
 /**************************create***************************/
@@ -27,5 +26,6 @@ User.create = (newUser, result) => {
         res.status(200).json({ message: 'Utilisateur créer correctement' });
     });
 };
+
 
 module.exports = User;
