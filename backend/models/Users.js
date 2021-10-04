@@ -14,13 +14,16 @@ const User = function(user) {
 
 /**************************create***************************/
 
-User.create = (newUser) => {
+User.create = (newUser, result) => {
     DB.query("INSERT INTO users SET ? ", newUser, (err, res) => {
         if (err) {
-            console.log(err);
+            console.log("Une erreur est survenue");
+            result(err, null);
             return;
         }
         console.log("Utilisateur créé !");
+        result(null);
+
     });
 };
 

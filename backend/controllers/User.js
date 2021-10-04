@@ -17,13 +17,11 @@ exports.signup = (req, res, next) => {
                 statut: 0,
                 profilPicture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
             });
-
-            User.create(user, (error, res) => {
-                if (error) {
-                    console.log(error);
-                    return res.statut(400).json("Erreur ! Impossible de créer un nouvel Utilisateur");
-                }
-                return res.status(201).json({ message: 'Votre compte a bien été crée ! Bienvenue parmis nous !' });
+            User.create(user, (err) => {
+                if (err) {
+                    console.log(err);
+                    res.status(400).json("Erreur ! Impossible de créer un nouvel Utilisateur");
+                } else res.status(201).json({ message: 'Votre compte a bien été crée ! Bienvenue parmis nous !' });
 
             });
 
