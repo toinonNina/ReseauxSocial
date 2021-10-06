@@ -27,5 +27,22 @@ User.create = (newUser, result) => {
     });
 };
 
+/**************************found whith email***************************/
+
+User.findOne = (mail, result) => {
+    DB.query("SELECT * FROM users WHERE mail =?", [mail], (err, res) => {
+        if (err) {
+            console.log("Une erreur est survenue");
+            result(err, null);
+            return;
+        }
+        if (res.length) {
+            console.log("found user: ", res[0]);
+            result(null, res[0]);
+            return;
+        }
+        result({ kind: "not_found" }, null);
+    });
+};
 
 module.exports = User;

@@ -7,5 +7,5 @@ const userCtrl = require('../controllers/User.js');
 const profilPicture = require('../middleware/multer-profil.js');
 
 router.post('/signup', profilPicture, userCtrl.signup);
-
+router.post('/login', userCtrl.login);
 module.exports = router;
